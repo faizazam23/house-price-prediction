@@ -67,7 +67,7 @@ pip install pandas numpy scikit-learn matplotlib seaborn streamlit
 5. Run the web app:
 streamlit run app.py
 
-## 📈 Model Performance
+## Model Performance
 | Model | Training R² | Testing R² | RMSE |
 |-------|-------------|-----------|------|
 | Linear Regression | 0.6126 | 0.5758 | 0.7456 |
