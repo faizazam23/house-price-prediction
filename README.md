@@ -1,20 +1,20 @@
-# 🏡 House Price Prediction ML Project
+# House Price Prediction ML Project
 
-## 📌 Project Overview
+## Project Overview
 This is a Machine Learning project that predicts house prices using the California Housing Dataset. Built with Python, scikit-learn, and Streamlit for a web interface.
 
-## 🎯 Objective
+## Objective
 - Predict house prices based on features like income, house age, rooms, etc.
 - Compare Linear Regression vs Random Forest models
 - Deploy as a web application
 
-## 📊 Dataset
+## Dataset
 - Source: California Housing Dataset (sklearn)
 - Rows: 20,640
 - Features: 8 (MedInc, HouseAge, AveRooms, AveBedrms, Population, AveOccup, Latitude, Longitude)
 - Target: Price (median house value in 100k units)
 
-## 🛠️ Technologies Used
+## Technologies Used
 - Python 3.x
 - pandas - Data manipulation
 - numpy - Numerical computing
@@ -22,7 +22,7 @@ This is a Machine Learning project that predicts house prices using the Californ
 - Streamlit - Web framework
 - matplotlib, seaborn - Visualization
 
-## 📁 Project Structure
+## Project Structure
 
 house-price-prediction/
 ├── data/
@@ -41,7 +41,7 @@ house-price-prediction/
 ├── .gitignore
 └── README.md
 
-## 🚀 Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 - Python 3.7+
@@ -73,15 +73,15 @@ streamlit run app.py
 | Linear Regression | 0.6126 | 0.5758 | 0.7456 |
 | Random Forest | 0.9735 | 0.8046 | 0.5060 |
 
-Best Model: Random Forest ✅
+Best Model: Random Forest 
 
-## 🎯 How to Use
+## How to Use
 1. Launch the app: streamlit run app.py
 2. Adjust sliders in the sidebar for house features
 3. See real-time price prediction
 4. Check model performance metrics
 
-## 📝 Project Workflow
+## Project Workflow
 
 ### 1. Data Exploration (01_data_exploration.py)
 - Load and explore dataset
@@ -103,29 +103,29 @@ Best Model: Random Forest ✅
 - Interactive prediction tool
 - Display model performance
 
-## 💡 Key Features
+## Key Features
 - Interactive sliders for predictions
 - Real-time price calculation
 - Model performance metrics
 - Clean and intuitive UI
 - Feature importance analysis
 
-## 🔍 Future Improvements
+## Future Improvements
 - Add more advanced models (XGBoost, LightGBM)
 - Feature engineering and scaling
 - Cross-validation for better accuracy
 - Deploy to cloud (Heroku, AWS)
 - Add more visualizations
 
-## 📧 Author
+## Author
 - Name: Faiyz Azam
 - Email: faiyz.azam@gmail.com
 - GitHub: @faizazam23
 
-## 📜 License
+## License
 MIT License - feel free to use this project!
 
-## 🙏 Acknowledgments
+## Acknowledgments
 - California Housing Dataset (sklearn)
 - Streamlit documentation
 - Machine Learning community
