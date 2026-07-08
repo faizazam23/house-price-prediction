@@ -2,12 +2,68 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
+import os
 from sklearn.metrics import r2_score, mean_squared_error
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import fetch_california_housing
+from sklearn.ensemble import RandomForestRegressor
 
-# Page config
-st.set_page_config(page_title="🏡 House Price Predictor", layout="wide")
+# ============ GENERATE FILES IF MISSING ============
+@st.cache_resource
+def setup_data():
+    if not os.path.exists('models'):
+        os.makedirs('models')
+    if not os.path.exists('data'):
+        os.makedirs('data')
+    
+    if not os.path.exists('data/X_test.pkl'):
+        st.write("⏳ Generating training data...")
+        
+        # Download dataset
+        housing = fetch_california_housing()
+        data = pd.DataFrame(housing.data, columns=housing.feature_names)
+        data['Price'] = housing.target
+        
+        # Split
+        y = data['Price']
+        X = data.drop('Price', axis=1)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        
+        # Save
+        with open('data/X_train.pkl', 'wb') as f:
+            pickle.dump(X_train, f)
+        with open('data/X_test.pkl', 'wb') as f:
+            pickle.dump(X_test, f)
+        with open('data/y_train.pkl', 'wb') as f:
+            pickle.dump(y_train, f)
+        with open('data/y_test.pkl', 'wb') as f:
+            pickle.dump(y_test, f)
+        
+        st.write("✅ Data generated!")
+    
+    if not os.path.exists('models/best_model.pkl'):
+        st.write("⏳ Training model...")
+        
+        # Load data
+        with open('data/X_train.pkl', 'rb') as f:
+            X_train = pickle.load(f)
+        with open('data/y_train.pkl', 'rb') as f:
+            y_train = pickle.load(f)
+        
+        # Train
+        model = RandomForestRegressor(n_estimators=100, random_state=42, n_jobs=-1)
+        model.fit(X_train, y_train)
+        
+        # Save
+        with open('models/best_model.pkl', 'wb') as f:
+            pickle.dump(model, f)
+        
+        st.write("✅ Model trained!")
 
-# Load model
+# Generate files if missing
+setup_data()
+
+# ============ LOAD MODEL ============
 @st.cache_resource
 def load_model():
     with open('models/best_model.pkl', 'rb') as f:
@@ -26,7 +82,7 @@ X_test, y_test = load_test_data()
 
 # ============ TITLE ============
 st.title("🏡 House Price Prediction App")
-st.write("California Housing Dataset - Machine Learning Model")
+st.write("California Housing Dataset - Powered by Random Forest ML")
 
 # ============ SIDEBAR ============
 st.sidebar.header("📊 House Details")
